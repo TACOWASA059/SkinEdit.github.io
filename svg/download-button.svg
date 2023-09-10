@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_2" data-name="レイヤー 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke: #231815;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-4 {
+        stroke-width: 0px;
+      }
+
+      .cls-4, .cls-2 {
+        fill: #231815;
+      }
+
+      .cls-3 {
+        fill: #fff;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="_レイヤー_1-2" data-name="レイヤー 1">
+    <circle class="cls-3" cx="21" cy="21" r="20"/>
+    <rect class="cls-2" x="7.75" y="30" width="27" height="2"/>
+    <rect class="cls-2" x="7.75" y="25" width="2" height="7"/>
+    <rect class="cls-2" x="32.75" y="25" width="2" height="7"/>
+    <g>
+      <line class="cls-1" x1="21" y1="6.5" x2="21" y2="24.3"/>
+      <path class="cls-4" d="m16.2,17.46c.23-.15.54-.08.69.15l4.11,6.45,4.11-6.45c.15-.23.46-.3.69-.15.23.15.3.46.15.69l-4.53,7.11c-.09.14-.25.23-.42.23s-.33-.09-.42-.23l-4.53-7.11c-.05-.08-.08-.18-.08-.27,0-.17.08-.33.23-.42Z"/>
+    </g>
+  </g>
+</svg>

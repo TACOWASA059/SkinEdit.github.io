@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>スキン一括編集</title>
+</head>
+<h1><img class="tacowasa" src="png/tacowasa.png"> ス キ ン 一 括 編 集 <img class="tacowasa" src="png/tacowasa.png"></h1>
+<body>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="processImage.js" charset="utf-8"></script>
+
+    <hr class="hr">
+    <div class="tabs">
+    
+    <label class="tab_item" for="left1" >スキン処理 <input id="left1" type="radio" name="tab_item" checked></label>
+    <label class="tab_item" for="right1">スキン統合<input id="right1" type="radio" name="tab_item"></label>
+
+    <div class="tab_content">
+        <div class="inputContainers">
+            <div class="container" id="container0">
+                <div name="execute">
+                    <h2> 1. 入力スキン一覧</h2> 
+                    <!-- <h3> スキンの取得</h2> 
+                    <input type="text" name="mcid"></p>
+	                <p><input type="button" value="スキンを取得" id="button2" onclick="addImage()"></p> -->
+                </div>
+                <div name="merger">
+                    <h2 > 1. 優先1</h2>
+                    <br>
+
+                    <div class="skin-view">
+                        <p class="text1">body</p>
+                        <p class="text2">overlay</p>
+                        <input class="parts" id="head"  name="1" type="image"src="png/head.png" alt ="頭" checked="true">
+                        <input class="parts" id="body" name="2" type="image"src="png/body.png" alt ="胴体" checked="true">
+                        <input class="parts" id="r-arm" name="3" type="image"src="png/arm.png" alt ="右手" checked="true">
+                        <input class="parts" id="r-leg" name="4" type="image"src="png/leg.png" alt ="右足" checked="true">
+                        <input class="parts" id="l-arm" name="5" type="image"src="png/arm.png" alt ="左手" checked="true">
+                        <input class="parts" id="l-leg" name="6" type="image"src="png/leg.png" alt ="左足" checked="true">
+                        <input class="parts" id="head" name="7" type="image"src="png/head.png" alt ="頭" checked="true">
+                        <input class="parts" id="body" name="8" type="image"src="png/body.png" alt ="胴体" checked="true">
+                        <input class="parts" id="r-arm" name="9" type="image"src="png/arm.png" alt ="右手" checked="true">
+                        <input class="parts" id="r-leg" name="10" type="image"src="png/leg.png" alt ="右足" checked="true">
+                        <input class="parts" id="l-arm" name="11" type="image"src="png/arm.png" alt ="左手" checked="true">
+                        <input class="parts" id="l-leg" name="12" type="image"src="png/leg.png" alt ="左足" checked="true">
+                    </div>
+                </div>
+                <p id="result">選択された要素数: 0 / 全体の要素数: 0</p>
+                <div class="list-manipulate">
+                    <a id="all-select" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="allselect(this,true)">全選択</a>
+                    <a id="cancel" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="allselect(this,false)">選択解除</a>
+                    <a id="delete" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="removeSelectedElements(this)">選択要素を削除</a>
+                    <a id="duplication" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="duplicateSelectedElements(this)">選択要素を複製</a>
+                    <br>
+                    <a id="save" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="saveSelectedElements(this)">選択要素を保存</a>
+                    <a id="move" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="moveLi(0,1)">選択要素を右リストへ移動</a>
+                </div>
+                <ul class="image-container-vertical" id="image-container">
+                    <div id="inputFile">
+                        <p class="dropArea">ここにファイルをドロップしてください</p>
+                        <div id="inputFileWrap">
+                            <input type="file" name="uploadFile" id="uploadFile" accept=".png" onchange="includeImage(this,this)" ondrop="resetvalue(this)" onclick="resetvalue(this)"  multiple>
+                            <div id="btnInputFile"><span>ファイルを追加する</span></div>
+                        </div>
+                    </div>
+                </ul> 
+            </div>
+            <div class="container" id="container1">
+                <div name="execute">
+                    <h2> 2. 入力スキンの処理</h2>
+                    <p class="texts">選択された1.入力スキンがそのまま変更されます。</p>
+                    <h3> スキン反転</h3>
+                    <a id="backward" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="replaceImage(backwards)">前後反転</a>
+                    <a id="leftright" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="replaceImage(leftrightflip)">左右反転</a>
+                    <a id="upsidedown" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="replaceImage(upsidedown)">上下反転</a>
+                    <br>
+                    <h3> スキン頭の回転</h3>
+                    <div class="headrotate">
+                        <a id="left" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="replaceImage(head_rotate_vertical_inverse)">←</a>
+                        <a id="up" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="replaceImage(head_rotate_horizontal)">↑</a>
+                        <a id="clockwise" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="replaceImage(head_rotate)">⤵</a>
+                        <a id="right" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="replaceImage(head_rotate_vertical)">→</a>
+                        <a id="down" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="replaceImage(head_rotate_horizontal_inverse)">↓</a>
+                        <a id="counterclockwise" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="replaceImage(head_rotate_inverse)">⤴</a>
+                        <input class="head-front" type="image"src="png/head.png" alt ="頭">
+                    </div>
+                    
+                    <br>
+                    <h3> レイヤー</h3>
+                    <a id="internal" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="replaceImage(bring_one_internal_layer)">内側レイヤーにまとめる</a>
+                    <a id="external" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="replaceImage(bring_one_external_layer)">外側レイヤーにまとめる</a>
+                    <br>
+                    <h3> スキン</h3>
+                    <a id="lift" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="replaceImage(lifting_skin)">持ち上げスキンに変更</a>
+                    <a id="stamp" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="replaceImage(trampling_skin)">踏みつけスキンに変更</a>
+                    <br>
+                    <h3> スリム/ワイド</h3>
+                    <a id="wide" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="replaceImage(slim2wide)">wide</a>
+                    <a id="slim" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="replaceImage(wide2slim)">slim</a>
+                    <br>
+                    <h3> 色</h3>
+                    <a id="gray" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="replaceImage(toGray)">グレー</a>
+                    <a id="sepia" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="replaceImage(toSepia)">セピア</a>
+                    <a id="negative" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="replaceImage(toNegative)">ネガ</a>
+                    <a id="complement" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="replaceImage(toComplement)">補色</a>
+                    <a id="erase_margin" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="replaceImage(erase_margin)">余白の削除</a>
+                    <br>
+                    <h2> 3. 入力スキンの置き換え</h2>
+                    <p class="texts">選択された入力スキンを下記リストで選択したスキンに置き換えます。</p>
+                    <h3>持ち上げ/踏みつけ</h3>
+                
+                    <a id="replace-head" href="#container2" class="btn-flat-dashed-filled" onclick="replaceImages(replace_head)">頭を置き換え</a>
+                    <a id="replace-leg" href="#container2" class="btn-flat-dashed-filled" onclick="replaceImages(replace_leg)">足を頭で置き換え</a>
+                </div>
+                <div name="merger">
+                    <h2>2. 優先2</h2>
+                    <br>
+
+                    <div class="skin-view">
+                        <p class="text1">body</p>
+                        <p class="text2">overlay</p>
+                        <input class="parts" id="head"  name="1" type="image"src="png/head.png" alt ="頭" checked="true">
+                        <input class="parts" id="body" name="2" type="image"src="png/body.png" alt ="胴体" checked="true">
+                        <input class="parts" id="r-arm" name="3" type="image"src="png/arm.png" alt ="右手" checked="true">
+                        <input class="parts" id="r-leg" name="4" type="image"src="png/leg.png" alt ="右足" checked="true">
+                        <input class="parts" id="l-arm" name="5" type="image"src="png/arm.png" alt ="左手" checked="true">
+                        <input class="parts" id="l-leg" name="6" type="image"src="png/leg.png" alt ="左足" checked="true">
+                        <input class="parts" id="head" name="7" type="image"src="png/head.png" alt ="頭" checked="true">
+                        <input class="parts" id="body" name="8" type="image"src="png/body.png" alt ="胴体" checked="true">
+                        <input class="parts" id="r-arm" name="9" type="image"src="png/arm.png" alt ="右手" checked="true">
+                        <input class="parts" id="r-leg" name="10" type="image"src="png/leg.png" alt ="右足" checked="true">
+                        <input class="parts" id="l-arm" name="11" type="image"src="png/arm.png" alt ="左手" checked="true">
+                        <input class="parts" id="l-leg" name="12" type="image"src="png/leg.png" alt ="左足" checked="true">
+                    </div>
+
+                    
+                </div>
+
+                <p id="result">選択された要素数: 0 / 全体の要素数: 0</p>
+                <div class="list-manipulate">
+                    <a id="all-select" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="allselect(this,true)">全選択</a>
+                    <a id="cancel" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="allselect(this,false)">選択解除</a>
+                    <a id="delete" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="removeSelectedElements(this)">選択要素を削除</a>
+                    <a id="duplication" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="duplicateSelectedElements(this)">選択要素を複製</a>
+                    <br>
+                    <a id="save" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="saveSelectedElements(this)">選択要素を保存</a>
+                    
+                    <a id="move" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="moveLi(1,0)">選択要素を左リストへ移動</a>
+                    
+
+                </div>
+                
+                <ul class="image-container-vertical" id="image-container">
+                    <div id="inputFile">
+                        <p class="dropArea">ここにファイルをドロップしてください</p>
+                        <div id="inputFileWrap">
+                            <input type="file" name="uploadFile" id="uploadFile" accept=".png" onchange="includeImage(this,this)" ondrop="resetvalue(this)" onclick="resetvalue(this)"  multiple>
+                            <div id="btnInputFile"><span>ファイルを追加する</span></div>
+                        </div>
+                    </div>
+                </ul> 
+            </div>
+        </div>
+    </div>    
+        <div name="merger" id="integrate">
+            <a id="integrate" href="#container2" class="btn-flat-dashed-filled" onclick="replaceImages(merge_skin)">スキンを統合</a>
+
+        </div>
+        
+        <hr class="hr">
+        <h2 name="execute"> 4. 置き換え後のスキンリスト</h2>
+        <h2 name="merger"> 3. 統合後のスキンリスト</h2>
+        <div class="container" id="container2">
+            <ul class="image-container" id="image-container">
+            </ul> 
+            <p id="result">選択された要素数: 0 / 全体の要素数: 0</p>
+            <div class="list-manipulate">
+                <a id="all-select" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="allselect(this,true)">全選択</a>
+                <a id="cancel" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="allselect(this,false)">選択解除</a>
+                <a id="delete" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="removeSelectedElements(this)">選択要素を削除</a>
+                <a id="duplication" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="duplicateSelectedElements(this)">選択要素を複製</a>
+                <a id="save" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="saveSelectedElements(this)">選択要素を保存</a>
+                <a id="move" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="moveLi(2,0)">選択要素を左上リストへ移動</a>
+                <a id="move" href="javascript:void(0)" class="btn-flat-dashed-filled" onclick="moveLi(2,1)">選択要素を右上リストへ移動</a>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener('click', (event) => {
+        if(!event.target){
+
+        }
+        else if (event.target.classList.contains("checkbox_button") ) {
+            const checkbox=event.target;
+            const li = checkbox.closest("li"); // 最も近い親の <li> 要素を取得
+            if (checkbox.checked) {
+                li.classList.add("checked"); // チェックされた場合、背景色を変更
+                updatecount(li.parentElement);
+            } else {
+                li.classList.remove("checked"); // チェックが外された場合、背景色を戻す
+                updatecount(li.parentElement);
+            }
+        }else if(event.target.tagName === 'LI'){
+            const lists=event.target;
+            const input=lists.getElementsByTagName("input")[0];
+            if (input.hasAttribute('checked')) {
+                input.removeAttribute("checked")
+                lists.classList.remove("checked");
+                updatecount(lists.parentElement);
+            } else {
+                input.setAttribute('checked', true) ;
+                lists.classList.add("checked");
+                updatecount(lists.parentElement);
+            }
+        }
+        else if(event.target.classList.contains("round_btn")){
+            const button=event.target;
+            const listItem=button.parentElement;
+            listItem.classList.add("fade-out");
+            listItem.addEventListener("transitionend", function () {
+                if(listItem.classList.contains("fade-out")){
+                    const parent=listItem.parentElement;
+                    listItem.remove();
+                    updatecount(parent);
+                }
+            });
+        }
+        else if(event.target.classList.contains("download-button")){
+            const button=event.target;
+            const listItem=button.parentElement;
+            const img=listItem.getElementsByClassName("img2")[0];
+            save(img);
+        }
+        else if(event.target.classList.contains("duplicate-button")){
+            const button=event.target;
+            const listItem=button.parentElement;
+            const clonedLi = listItem.cloneNode(true);
+            listItem.parentNode.insertBefore(clonedLi, listItem.nextSibling);
+            updatecount(listItem.parentElement);
+        }
+        else if(event.target.parentElement&&event.target.parentElement.tagName === 'LI'){
+            const lists=event.target.parentElement;
+            const input=lists.getElementsByTagName("input")[0];
+            if (input.hasAttribute('checked')) {
+                input.removeAttribute("checked")
+                lists.classList.remove("checked");
+                updatecount(lists.parentElement);
+            } else {
+                input.setAttribute('checked', true) ;
+                lists.classList.add("checked");
+                updatecount(lists.parentElement);
+            }
+        }
+    });
+    // ドラッグ&ドロップエリアの取得
+    const fileAreas = document.querySelectorAll('.dropArea');
+    for(fileArea of fileAreas){
+        fileArea.addEventListener('dragover', function(e){
+            e.preventDefault();
+            this.classList.add('dragover');
+        });
+        fileArea.addEventListener('dragleave', function(e){
+            e.preventDefault();
+            this.classList.remove('dragover');
+        });
+        fileArea.addEventListener('drop', function(e){
+            e.preventDefault();
+            this.classList.remove('dragover');
+            includeImage(e.dataTransfer,this)
+        });
+    }
+
+    const lists = document.querySelectorAll('ul');
+    let draggedItem = null;
+    lists.forEach((list) => {
+        list.addEventListener('dragstart', (e) => {
+            draggedItem = e.target;
+        });
+
+        list.addEventListener('dragover', (e) => {
+            if(draggedItem&&draggedItem.tagName!="IMG")e.preventDefault(); // ドラッグ要素がドロップできるようにする
+        });
+
+        list.addEventListener('drop', (e) => {
+            if (draggedItem&& draggedItem.tagName=="LI") {
+                list.appendChild(draggedItem); // ドロップされた位置に要素を追加
+                draggedItem = null;
+            }
+        });
+    });
+    const first_radio=document.querySelector('[name="tab_item"]');
+    const radios=document.querySelectorAll('[name="tab_item"]');
+
+    const executes=document.querySelectorAll('[name="execute"]');
+    const mergers=document.querySelectorAll('[name="merger"]');
+    for(merger of mergers){
+        merger.style.display="none";
+    }
+    const elements = document.querySelectorAll(".image-container-vertical");
+    const ul1=elements[0];
+    const ul2=elements[1];
+    const height1='1530px'
+    const height2='500px'
+    const height3='500px'
+    radios.forEach((radio)=>{
+        radio.addEventListener('click',(e)=>{
+            if(!first_radio.checked){
+                for(execute of executes){
+                    execute.style.display='none';
+                }
+                for(merger of mergers){
+                    merger.style.display='';
+                }
+                ul1.style.height=height3;
+                ul2.style.height=height3;
+            }
+            else{
+                for(execute of executes){
+                    execute.style.display='';
+                }
+                for(merger of mergers){
+                    merger.style.display='none';
+                }
+                ul1.style.height=height1;
+                ul2.style.height=height2;
+            }
+        });
+    });
+    
+    const parts=document.querySelectorAll(".parts");
+    parts.forEach((part)=>{
+        part.addEventListener("click",(e)=>{
+            if(part.getAttribute("checked")=="true"){
+                part.setAttribute("checked",false);
+            }else{
+                part.setAttribute("checked",true);
+            }
+        })
+    });
+</script>

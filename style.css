@@ -1,0 +1,545 @@
+h1 {
+    color: #010079;
+    text-shadow: 0 0 5px white;
+    border-left: solid 7px #010079;
+    background: -webkit-repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+    background: repeating-linear-gradient(-45deg, #cce7ff, #cce7ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+}
+h1:hover{
+    transform: scale(1.05);
+    transform-origin: left;
+}
+h2 {
+    position: relative;
+    display: inline-block;
+    margin: 10px 0 1rem -10px;
+    margin-left: 20px;
+    padding: 1rem 3rem;
+    color: #fff;
+    border-radius: 0 100vh 100vh 0;
+    background: #0075a9;
+    -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, .2);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, .2);
+}
+h3 {
+	position: relative;
+    display: inline-block;
+	padding: 0.5em 0.75em;
+	border: solid 1px #27acd9;
+	border-left: solid 2.5em #27acd9;
+    margin-left: 30px;
+}
+h3:before {
+	position: absolute;
+	font-weight: 900;
+	color: #fff;
+	padding: 0;
+	left: -1.6em;
+	top: 50%;
+	transform: translateY(-50%);
+}
+p.texts{
+    margin-left: 20px;
+}
+
+h2:before {
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 0;
+    height: 0;
+    content: '';
+    border-top: 10px solid #005276;
+    border-left: 10px solid transparent;
+}
+img.tacowasa{
+    width:40pt;
+    image-rendering: pixelated;
+    object-fit: contain;
+    vertical-align: middle;
+}
+img.tacowasa {
+    transition: .5s ;
+    transform: rotateZ( 0deg ) ;
+}
+
+img.tacowasa:hover  {
+    transform: rotateZ( 360deg ) ;
+}
+
+#inputFile {
+    width: 300pt;
+    position: relative;
+    height: 150pt;
+    padding: 180px 50px 70px;
+    text-align: center;
+    margin-right: 20px;
+}
+.dropArea {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65%;
+    padding: 50px 0 0;
+    border: 2px dashed #494949;
+    background: rgba(22, 165, 191, 0.1);
+    transition: all 0.25s cubic-bezier(0.21, 0.51, 0.51, 1);
+}
+.dropArea.dragover {
+    border: 2px solid #16a5bf;
+    background: rgba(22, 165, 191, 0.6);
+}
+#uploadFile {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: block;
+    width: 300px;
+    height: 80px;
+    opacity: 0;
+}
+#inputFileWrap {
+    position: relative;
+    display: inline-block;
+}
+#btnInputFile {
+    display: table;
+    width: 250px;
+}
+#btnInputFile span{
+    position: relative;
+    z-index: 2;
+    display: table-cell;
+    width: 300px;
+    height: 50px;
+    border: 1px solid #333;
+    border-radius: 10px;
+    background: #333;
+    color: #fff;
+    font-size: 26px;
+    line-height: 1;
+    font-weight: bold;
+    vertical-align: middle;
+
+}
+#btnInputFile span:hover{
+    border: 1px solid #8a8787;
+    background: #8d8c8c;
+}
+#upFileWrap.selected #btnInputFile {
+    display: none;
+}
+
+
+.image-container img{
+    width: 24%;
+    margin: 0 0 10px;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+div.inputContainers{
+    display: flex;
+    margin-right: 4%;
+}
+div.container{
+    flex: 1; 
+    border-right: 1px solid #333;
+}
+ul.image-container-vertical {
+    display: flex;
+    flex-flow: column;
+    flex-basis: 50%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 1530px;
+    width: calc(80%);
+    border: 2px solid #000;
+    margin-right: 2%;
+    margin-left:5%;
+}
+ul.image-container {
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: calc(89%);
+    height: 405px;
+    border: 2px solid #000;
+}
+a{
+    margin-left:10px;
+    margin-right: 10px;
+}
+div#container1>ul.image-container-vertical{
+    height: 500px;
+}
+li{
+    background-color: #dddada;
+    list-style: none;
+    margin-right: 30px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-rows: 110px 110px 110px 10px;/*縦に3分割するのでGridが4本できる*/
+    grid-template-columns: 40px 128px 266px 50px;/*横に2分割するのでGridが3本できる*/
+}
+ul.image-container-vertical>li{
+    width: 100%;
+    margin-right: 30px;
+}
+li.fade-out {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+li.fade-In {
+    animation-name: fadeleft;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+li.checked{
+    background-color: #aaaaaa;
+    outline : solid 8px rgba(19, 135, 243, 0.5);
+    outline-offset: 2px;
+    border-radius: 5px;
+}
+li:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+p.checkbox{
+    transform: scale(2);
+    grid-row:2/3;/*縦・Grid1〜3まで表示*/
+    grid-column: 1/2;/*横・Grid1〜3まで表示*/
+    text-align: center;
+    margin: auto;
+}
+p.checkbox:hover{
+    transform: scale(2.2);
+}
+.img{
+
+    grid-row:1/4;/*縦・Grid1〜3まで表示*/
+    grid-column: 2/3;/*横・Grid1〜3まで表示*/
+    
+}
+.img2{
+
+    grid-row:1/4;/*縦・Grid1〜3まで表示*/
+    grid-column: 3/5;/*横・Grid1〜3まで表示*/
+}
+img.img{
+    width: 124px;
+    height: 252px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    border: double 2pt #000;
+    background-color: #fff;
+    cursor: default;
+}
+img.img2{
+    width: 252px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    border: double 2pt #000;
+    background-color: #838383;
+    cursor: default;
+}
+img.download-button,img.duplicate-button{
+    grid-column: 4/5;/*横・Grid1〜3まで表示*/
+    text-align: right;
+    width: 40px;
+}
+img.download-button{
+    grid-row: 2/3;
+    cursor: default;
+}
+img.duplicate-button{
+    grid-row:3/4;/*縦・Grid1〜3まで表示*/
+    cursor: default;
+}
+img.download-button:active,img.duplicate-button:active {
+    opacity: 0.5;
+}
+img.download-button:hover,img.duplicate-button:hover{
+    transform:scale(1.2);
+}
+p.text{
+    grid-row:4/5;/*縦・Grid1〜3まで表示*/
+    grid-column: 2/5;/*横・Grid1〜3まで表示*/
+    text-align: center;
+    font-weight: bold;
+    background-color: white;
+}
+
+.round_btn {
+    grid-row:1/2;/*縦・Grid1〜3まで表示*/
+    grid-column: 4/5;/*横・Grid1〜3まで表示*/
+    text-align: right;
+    display: block;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #333; /* 枠の調整 */
+    border-radius: 50%;  /* 丸みの度合い */
+    background: #fff; /* ボタンの背景色 */
+    cursor: default;
+  }
+.round_btn:active{
+    opacity: 0.5;
+}
+.round_btn::before, .round_btn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3px; /* 棒の幅（太さ） */
+    height: 22px; /* 棒の高さ */
+    background: #333; /* バツ印の色 */
+}
+
+.round_btn::before {
+transform: translate(-50%,-50%) rotate(45deg);
+}
+
+.round_btn::after {
+transform: translate(-50%,-50%) rotate(-45deg);
+}
+.round_btn:hover{
+    transform:scale(1.2);
+}
+::-webkit-scrollbar {
+    width: 3px;
+}
+::-webkit-scrollbar-track {
+background: #c8e6f0;
+border-radius: 6px;
+}
+::-webkit-scrollbar-thumb {
+background: #1f687e;
+border-radius: 6px;
+}
+
+#result {
+    padding: 1rem 2rem;
+    border-left: 4px solid #000;
+    font-weight: bold;
+}
+.btn-flat-dashed-filled {
+    display: inline-block;
+    padding: 0.5em 0.5em;
+    margin-bottom: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    
+    color: #FFF;
+    border: solid 1px #051722;
+    background: #05215e;
+    border-radius: 3px;
+    transition: .4s;
+}
+
+.btn-flat-dashed-filled:hover {
+    background: #cbedff;
+    color: #0a141a;
+}
+.btn-flat-dashed-filled:active {
+    /*押したとき*/
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);/*沈むように*/
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+  }
+.hr {
+    border-top: 5px dotted #000;
+}
+
+.tabs {
+    margin-top: 50px;
+    padding-bottom: 40px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    margin: 0 auto;}
+  
+  /*タブのスタイル*/
+  .tab_item {
+    width: calc(95%/2);
+    height: 50px;
+    border-bottom: 3px solid #5ab4bd;
+    background-color: #d9d9d9;
+    line-height: 50px;
+    font-size: 16px;
+    text-align: center;
+    color: #565656;
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.2s ease;
+  }
+  .tab_item:hover {
+    opacity: 0.9;
+    cursor: pointer;
+  }
+  label:has(input:checked) {
+    background-color: #6e6f70;
+    color:#fff
+  }
+  
+  /*ラジオボタンを全て消す*/
+  input[name="tab_item"] {
+    display: none;
+  }
+input.parts{
+    image-rendering: pixelated;
+    object-fit: contain;
+    opacity: 0.7;
+    user-select: none;
+}
+input.parts[checked=true]{
+    outline: solid 5px #d37b07;
+    opacity: 1.0;
+}
+input.parts:hover{
+    transform:scale(1.05)
+}
+#head,#body{
+    width: 40px;
+}
+#l-arm,#l-leg,#r-arm,#r-leg{
+    width: 20px;
+}
+
+div.skin-view{
+    place-content: center;
+    place-items: center;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-rows: 25px 20px 25px 25px 25px 25px 25px 25px;/*縦に3分割するのでGridが4本できる*/
+    grid-template-columns: 25px 25px 25px 25px 100px 25px 25px 25px 25px ;/*横に2分割するのでGridが3本できる*/
+}
+input[name="1"]{
+    grid-row:2/4;
+    grid-column: 2/4;
+}
+input[name="2"]{
+    grid-row:4/7;
+    grid-column: 2/4;
+}
+input[name="3"]{
+    grid-row:4/7;
+    grid-column: 1/2;
+}input[name="4"]{
+    grid-row:7/9;
+    grid-column: 2/3;
+}
+input[name="5"]{
+    grid-row:4/7;
+    grid-column: 4/5;
+}input[name="6"]{
+    grid-row:7/9;
+    grid-column: 3/4;
+}
+input[name="7"]{
+    grid-row:2/4;
+    grid-column: 7/9;
+}
+input[name="8"]{
+    grid-row:4/7;
+    grid-column: 7/9;
+}
+input[name="9"]{
+    grid-row:4/7;
+    grid-column: 6/7;
+}input[name="10"]{
+    grid-row:7/9;
+    grid-column: 7/8;
+}
+input[name="11"]{
+    grid-row:4/7;
+    grid-column: 9/10;
+}input[name="12"]{
+    grid-row:7/9;
+    grid-column: 8/9;
+}
+p.text1{
+    grid-row: 1/2;
+    grid-column: 2/4;
+    user-select: none;
+}
+p.text2{
+    grid-row: 1/2;
+    grid-column: 7/9;
+    user-select: none;
+}
+div#integrate{
+    text-align: center;
+    margin-top:20px;
+    margin-right: 5%;
+    
+}
+a#integrate{
+    vertical-align: middle;
+	text-decoration: none;
+	width: 25%;
+	margin: auto;
+	padding: 1rem 4rem;
+	font-weight: bold;
+	border: 2px solid #27acd9;
+	background: #27acd9;
+	color: #fff;
+	transition: 0.5s;
+}
+a#integrate:hover {
+	color: #27acd9;
+	background: #fff;
+}
+
+div.headrotate{
+    place-content: center;
+    place-items: center;
+    margin-right: 40%;
+    margin-left: 40%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: grid;
+    grid-gap:10px 40%;
+    grid-template-rows: 25% 25% 25%;
+    grid-template-columns: 75px 75px 75px ;
+}
+a#left{
+    grid-row:2/3;
+    grid-column: 1/2;
+}
+a#right{
+    grid-row:2/3;
+    grid-column: 3/4;
+}
+a#clockwise{
+    grid-row:1/2;
+    grid-column: 3/4;
+}
+a#up{
+    grid-row:1/2;
+    grid-column: 2/3;
+}
+a#down{
+    grid-row:3/4;
+    grid-column: 2/3;    
+}
+a#counterclockwise{
+    grid-row:3/4;
+    grid-column: 3/4;
+}
+input.head-front{
+    image-rendering: pixelated;
+    object-fit: contain;
+    user-select: none;
+    width: 100%;
+    grid-row:2/3;
+    grid-column: 2/3;
+}
+div.list-manipulate{
+    text-align: center;
+}
